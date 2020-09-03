@@ -1,0 +1,153 @@
+<div class="content">
+  <h1> Create Event </h1>
+
+  <mat-horizontal-stepper linear [formGroup]="eventForm">
+
+    <mat-step formGroupName="profile">
+      <div class="step-content">
+        <p>The event profile is used to create the event page.</p>
+        <ng-template matStepLabel>Create event profile</ng-template>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Event Name</mat-label>
+          <input matInput type="email" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Event Description</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+
+<!--        <input type="file">-->
+
+        <mat-radio-group aria-label="Select an option" [selected]="publicRadio" formControlName="visibility">
+          <label>Your event is</label>
+
+          <mat-radio-button value="public" #publicRadio>
+            Public
+            <mat-icon class="help-icon" matTooltip="Help here" matTooltipPosition="above">help</mat-icon>
+          </mat-radio-button>
+          <mat-radio-button value="private">
+            Private
+            <mat-icon class="help-icon" matTooltip="Help here" matTooltipPosition="above">help</mat-icon>
+          </mat-radio-button>
+        </mat-radio-group>
+
+        <div class="step-nav-content">
+          <button mat-button matStepperNext type="button">Next</button>
+        </div>
+
+      </div>
+
+
+    </mat-step>
+
+    <mat-step formGroupName="location">
+      <ng-template matStepLabel>Set event location</ng-template>
+
+      <div class="step-content">
+        <mat-radio-group aria-label="Event type" [selected]="localRadio" formControlName="type">
+          <label>Event type: </label>
+
+          <mat-radio-button value="local" #localRadio>Local</mat-radio-button>
+          <mat-radio-button value="online">Online</mat-radio-button>
+        </mat-radio-group>
+
+        <ng-template [ngIf]="localRadio.checked">
+          <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <input matInput type="text" formControlName="city">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>State</mat-label>
+            <input matInput type="text" formControlName="state">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Street</mat-label>
+            <input matInput type="text" formControlName="street">
+          </mat-form-field>
+        </ng-template>
+
+
+        <div class="step-nav-content">
+          <button mat-button matStepperPrevious type="button">Back</button>
+          <button mat-button matStepperNext type="button">Next</button>
+        </div>
+
+      </div>
+
+    </mat-step>
+
+
+    <mat-step>
+      <ng-template matStepLabel>Add sub events</ng-template>
+
+      <div class="step-content">
+        <button mat-button (click)="openSubEventDialog()">Add Sub</button>
+
+        <p *ngIf="subEvents.length == 0">Add Sub Events</p>
+
+
+        <table #subTable mat-table [dataSource]="subEvents" *ngIf="subEvents.length > 0">
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="start">
+            <th mat-header-cell *matHeaderCellDef> Start Date</th>
+            <td mat-cell *matCellDef="let element"> {{element.startDate}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="end">
+            <th mat-header-cell *matHeaderCellDef> End Date</th>
+            <td mat-cell *matCellDef="let element"> {{element.endDate}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Price</th>
+            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="remove">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <button (click)="removeSubEvent(element)">Remove</button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="subEventTableDisplayColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: subEventTableDisplayColumns;"></tr>
+        </table>
+
+        <div class="step-nav-content">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+
+
+      </div>
+
+
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>Publish event?</p>
+
+      <button mat-button matStepperPrevious type="button">Back</button>
+      <button mat-button>Cancel</button>
+      <button mat-button (click)="publishEvent()">Publish</button>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+
+
+mat-card {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+mat-card:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+

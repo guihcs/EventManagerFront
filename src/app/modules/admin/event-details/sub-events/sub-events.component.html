@@ -1,0 +1,28 @@
+<h1>Sub Events</h1>
+
+<table mat-table [dataSource]="subEvents" *ngIf="subEvents">
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name</th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="start">
+    <th mat-header-cell *matHeaderCellDef> Start Date</th>
+    <td mat-cell *matCellDef="let element"> {{element.startDate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="end">
+    <th mat-header-cell *matHeaderCellDef> End Date</th>
+    <td mat-cell *matCellDef="let element"> {{element.endDate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef> Price</th>
+    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="subEventTableDisplayColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: subEventTableDisplayColumns;"></tr>
+</table>

@@ -1,0 +1,28 @@
+
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 300px;
+  height: 350px;
+  padding: 0 16px 0 16px;
+}
+
+
+h1 {
+  text-align: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+p {
+  text-align: center;
+}
+
+mat-icon {
+  color: gray;
+}

@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <button mat-icon-button (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="register-form">
+
+  <h1> Register </h1>
+
+  <div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" [formControl]="nameControl">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [formControl]="emailControl">
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" [formControl]="passwordControl">
+      <mat-icon matSuffix>vpn_key</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="register()" [disabled]="logging">REGISTER</button>
+
+</div>

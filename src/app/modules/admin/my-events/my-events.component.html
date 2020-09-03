@@ -1,0 +1,15 @@
+
+<h1>My Events</h1>
+
+<div class="event-container" *ngIf="myEvents?.length > 0">
+  <app-event-tumb
+    *ngFor="let event of myEvents"
+    [event]="event"
+    [routerLink]="['/admin', 'event', event.profile.name]"
+  ></app-event-tumb>
+</div>
+
+<div *ngIf="myEvents?.length <= 0">
+  <p>You don't have any events. <a routerLink="/admin/event/create">Create</a> one to se here.</p>
+</div>
+

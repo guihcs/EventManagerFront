@@ -1,0 +1,20 @@
+<p>
+  <mat-toolbar color="primary" class="mat-elevation-z4">
+    <span>My Application</span>
+    <span class="spacer"></span>
+    <div>
+      <button routerLink="create-event">Create Event</button>
+      <button routerLink="my-events">My Events</button>
+      <button [matMenuTriggerFor]="menu">Account</button>
+    </div>
+    <mat-menu #menu="matMenu">
+<!--      <button mat-menu-item routerLink="/admin/profile">Profile</button>-->
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </mat-toolbar>
+</p>
+
+<router-outlet></router-outlet>
+
+
+

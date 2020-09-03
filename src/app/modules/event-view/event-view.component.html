@@ -1,0 +1,45 @@
+
+
+<div class="content">
+
+  <div>
+    <div>
+      <h1> {{currentEvent?.profile.name}} </h1>
+      <p>
+        <mat-icon>calendar_today</mat-icon>
+        {{currentEvent?.subEvents[0].startDate}}
+      </p>
+      <p>
+        <mat-icon>place</mat-icon>
+        {{currentEvent?.location?.street}}
+      </p>
+      <h2>Description</h2>
+      <p>{{currentEvent?.profile.description}}</p>
+    </div>
+    <div>
+<!--      <img>-->
+    </div>
+  </div>
+
+
+  <div>
+    <h1>Sub events</h1>
+    <p>Total: 0</p>
+    <app-sub-event-buy
+      *ngFor="let event of currentEvent?.subEvents"
+      [subEvent]="event"
+      (countChange)="subscribe(event, $event)"
+      [showControls]="isLogged()"
+    ></app-sub-event-buy>
+    <button
+      *ngIf="isLogged()"
+      (click)="confirmSubscription()"
+      [disabled]="subscribing"
+    >CONTINUE</button>
+  </div>
+
+<!--  <p>Organizer</p>-->
+
+</div>
+
+
